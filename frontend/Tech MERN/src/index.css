@@ -1,3 +1,10 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Sakrijte oko za prikaz lozinke */
+input[type='password']::-ms-reveal,
+input[type='password']::-webkit-contacts-auto-fill-button,
+input[type='password']::-webkit-reveal-button {
+  display: none;
+}

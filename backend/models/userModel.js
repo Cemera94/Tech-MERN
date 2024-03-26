@@ -13,7 +13,7 @@ const userSchema = new Schema({
     lowercase: true,
     trim: true,
     unique: true,
-    // match: [/[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}/, 'Email is not valid'],
+    match: [/[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}/, 'Email is not valid'],
   },
   password: {
     type: 'String',

@@ -1,5 +1,6 @@
 import { Outlet } from 'react-router-dom';
 import NavigationComponent from './components/NavigationComponent';
+import './config/axiosConfig';
 
 function App() {
   return (
