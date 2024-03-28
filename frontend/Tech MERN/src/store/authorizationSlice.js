@@ -10,8 +10,15 @@ const authorizationSlice = createSlice({
       console.log(action.payload);
       state.toggle = action.payload;
     },
+    showLoginForm: (state) => {
+      state.toggle = false;
+    },
+    showRegisterForm: (state) => {
+      state.toggle = true;
+    },
   },
 });
 
-export const { setToggle } = authorizationSlice.actions;
+export const { setToggle, showLoginForm, showRegisterForm } =
+  authorizationSlice.actions;
 export default authorizationSlice.reducer;

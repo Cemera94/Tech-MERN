@@ -15,8 +15,11 @@ exports.register = catchAsync(async (req, res, next) => {
     const saveNewUser = await newUser.save();
 
     // SENDING EMAIL
-    const url = 'www.localhost.com';
-    await new Email(saveNewUser, url).sendWelcome();
+    const url = 'http://127.0.0.1:5173/';
+    await new Email(
+      { email: saveNewUser.email, username: saveNewUser.username },
+      url
+    ).sendWelcome();
 
     console.log(saveNewUser);
     res.status(200).json({
