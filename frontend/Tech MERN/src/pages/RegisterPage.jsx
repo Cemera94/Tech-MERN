@@ -85,7 +85,7 @@ function RegisterPage() {
           <div className='flex flex-col gap-[10px] mb-[50px]'>
             <h1 className='text-[30px]'>TechMERN Shop Registration</h1>
             <p className='text-[19px] '>
-              <span className='text-blue-700 italic'>Quick and Simple</span>{' '}
+              <span className='text-[#1a936f] italic'>Quick and Simple</span>{' '}
             </p>
           </div>
           <div className='flex flex-col gap-[10px]'>
@@ -135,7 +135,7 @@ function RegisterPage() {
             <Input
               type={passwordView ? 'text' : 'password'}
               id='password'
-              placeholder='Type your password'
+              placeholder='Choose your password'
               className='relative outline-none border border-slate-300 rounded-[10px] px-[16px] py-[8px]'
               onChange={handleInputChange}
             />
@@ -146,7 +146,7 @@ function RegisterPage() {
               {passwordView ? <FaEyeSlash /> : <FaEye />}
             </div>
           </div>
-          <Button className='bg-blue-700 py-[8px] rounded-[10px] outline-none text-white'>
+          <Button className='bg-[#1a936f] py-[8px] rounded-[10px] outline-none text-white'>
             Register
           </Button>
         </form>
@@ -154,7 +154,7 @@ function RegisterPage() {
           Already have an account?
           <span
             onClick={() => dispatch(showLoginForm())}
-            className='text-blue-700 cursor-pointer ml-[10px] underline'
+            className='text-[#1a936f] cursor-pointer ml-[10px] underline'
           >
             Login here
           </span>

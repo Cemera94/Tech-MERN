@@ -18,6 +18,7 @@ const userSchema = new Schema({
   password: {
     type: 'String',
     required: [true, 'Password is required'],
+    select: false,
     // validate: {
     //   validator: function (password) {
     //     // Password must contain one digit from 1 to 9, one lowercase letter, one uppercase letter, one special character, no space, and it must be 8-16 characters long.
@@ -58,6 +59,15 @@ userSchema.pre('save', async function (next) {
   if (!this.isModified('password')) return next();
   this.password = await bcrypt.hash(this.password, 12);
 });
+
+// Pravimo novu metodu u userSchemi pomoću .methods
+userSchema.methods.checkPassword = async (userPassword, hashPassword) => {
+  try {
+    return await bcrypt.compare(userPassword, hashPassword);
+  } catch (error) {
+    console.log(error, 'Error in checkPassword function');
+  }
+};
 
 const UserModel = mongoose.model('users', userSchema);
 module.exports = UserModel;

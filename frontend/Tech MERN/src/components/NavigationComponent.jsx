@@ -1,14 +1,18 @@
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { setCurrency, setSymbol } from '../store/currencySlice';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { setToggle } from '../store/authorizationSlice';
 import { localStorageConfig } from '../config/localStorageConfig';
+import { removeUser, setUser } from '../store/userSlice';
 
 function NavigationComponent() {
-  const dispatch = useDispatch();
   const { currency, symbol } = useSelector((state) => state.currencyStore);
+  const { user } = useSelector((state) => state.userStore);
   const { toggle } = useSelector((state) => state.authorizationStore);
+
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   useEffect(() => {
     localStorage.setItem(localStorageConfig.CURRENCY, currency);
@@ -27,6 +31,11 @@ function NavigationComponent() {
 
   const handleToggle = () => {
     dispatch(setToggle(!toggle));
+  };
+
+  const handleLogout = () => {
+    dispatch(removeUser());
+    localStorage.removeItem(localStorageConfig.USER);
   };
 
   return (
@@ -56,11 +65,29 @@ function NavigationComponent() {
               <li>
                 <NavLink to={'/contact'}>Contact</NavLink>
               </li>
-              <li>
-                <NavLink to={'/authorization'} onClick={() => handleToggle()}>
-                  {toggle ? 'Login' : 'Register'}
-                </NavLink>
-              </li>
+              {localStorage.getItem(localStorageConfig.USER) ? (
+                <div className='dropdown'>
+                  <li className='dropbtn'>
+                    <a>{user.username}</a>
+                  </li>
+                  <div className='dropdown-content py-[8px] rounded-[10px]'>
+                    <NavLink className='py-[8px] px-[16px]'>Profile</NavLink>
+                    <NavLink
+                      to={'/authorization'}
+                      className='py-[8px] px-[16px]'
+                      onClick={handleLogout}
+                    >
+                      Logout
+                    </NavLink>
+                  </div>
+                </div>
+              ) : (
+                <li>
+                  <NavLink to={'/authorization'} onClick={() => handleToggle()}>
+                    {toggle ? 'Login' : 'Register'}
+                  </NavLink>
+                </li>
+              )}
             </ul>
           </nav>
         </div>

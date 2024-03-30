@@ -35,19 +35,31 @@ exports.register = catchAsync(async (req, res, next) => {
 // *****LOGIN*****
 // ***************
 exports.login = catchAsync(async (req, res, next) => {
+  // Poslali smo u userSchemi select: false da nigde ne prikazuje password.
+  // Ovde nam je neophodan i onda smo na kraju pozvali .select('+password')
   const user = await Users.findOne({
     email: req.body.email,
-  });
+  }).select('+password');
+  console.log(user, 'user');
   if (!user) {
     return next(
       new AppError('Incorrect email or password, user not found', 401)
     );
   }
 
-  if (user.password === req.body.password) {
+  const correctPassword = await user.checkPassword(
+    req.body.password,
+    user.password
+  );
+
+  // Izbacujemo password pomoću Javascript metode da ne bi slali klijentu njegovu lozinku
+  const { password, ...userData } = user.toObject();
+
+  if (correctPassword) {
     res.status(200).json({
       status: 'success',
       message: 'User successfully logged in',
+      user: userData,
     });
   } else {
     return next(new AppError('Incorrect credentials', 401));
