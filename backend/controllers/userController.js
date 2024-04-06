@@ -53,12 +53,11 @@ exports.login = catchAsync(async (req, res, next) => {
   );
 
   // Izbacujemo password pomoću Javascript metode da ne bi slali klijentu njegovu lozinku
-  const { password, ...userData } = user.toObject();
+  const { password, _id, __v, ...userData } = user.toObject();
 
   if (correctPassword) {
     res.status(200).json({
       status: 'success',
-      message: 'User successfully logged in',
       user: userData,
     });
   } else {

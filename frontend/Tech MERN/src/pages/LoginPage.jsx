@@ -9,11 +9,11 @@ import { useNavigate } from 'react-router-dom';
 import { FaEye } from 'react-icons/fa';
 import { FaEyeSlash } from 'react-icons/fa';
 import { checkEmailValidation } from '../utils/checkEmailValidation';
-import { login } from '../services/userService';
 import { setShowLoader } from '../store/loaderSlice';
 import { toast } from 'react-toastify';
 import { localStorageConfig } from '../config/localStorageConfig';
 import { setUser } from '../store/userSlice';
+import { login } from '../services/userService';
 
 function LoginPage() {
   const [isEmail, setIsEmail] = useState(true);
@@ -58,7 +58,6 @@ function LoginPage() {
     dispatch(setShowLoader(false));
 
     if (res.status === 'success') {
-      toast.success(res.message);
       localStorage.setItem(localStorageConfig.USER, JSON.stringify(res.user));
       dispatch(setUser(res.user));
       navigate('/');

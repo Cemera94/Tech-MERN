@@ -3,6 +3,7 @@ import currencySlice from './currencySlice';
 import authorizationSlice from './authorizationSlice';
 import loaderSlice from './loaderSlice';
 import userSlice from './userSlice';
+import dashboardSlice from './dashboardSlice';
 
 const store = configureStore({
   reducer: {
@@ -10,6 +11,7 @@ const store = configureStore({
     authorizationStore: authorizationSlice,
     loaderStore: loaderSlice,
     userStore: userSlice,
+    dashboardStore: dashboardSlice,
   },
 });
 

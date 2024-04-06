@@ -5,11 +5,14 @@ import { useEffect, useState } from 'react';
 import { setToggle } from '../store/authorizationSlice';
 import { localStorageConfig } from '../config/localStorageConfig';
 import { removeUser, setUser } from '../store/userSlice';
+import { FaChevronDown } from 'react-icons/fa6';
+import { setDashboardView } from '../store/dashboardSlice';
 
 function NavigationComponent() {
   const { currency, symbol } = useSelector((state) => state.currencyStore);
   const { user } = useSelector((state) => state.userStore);
   const { toggle } = useSelector((state) => state.authorizationStore);
+  const { isDashboardView } = useSelector((state) => state.dashboardStore);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -36,6 +39,10 @@ function NavigationComponent() {
   const handleLogout = () => {
     dispatch(removeUser());
     localStorage.removeItem(localStorageConfig.USER);
+  };
+
+  const handleDashboardView = () => {
+    dispatch(setDashboardView(true));
   };
 
   return (
@@ -67,11 +74,25 @@ function NavigationComponent() {
               </li>
               {localStorage.getItem(localStorageConfig.USER) ? (
                 <div className='dropdown'>
-                  <li className='dropbtn'>
+                  <li className='dropbtn cursor-pointer flex items-center gap-[5px]'>
                     <a>{user.username}</a>
+                    <div className='icon'>
+                      <FaChevronDown />
+                    </div>
                   </li>
                   <div className='dropdown-content py-[8px] rounded-[10px]'>
-                    <NavLink className='py-[8px] px-[16px]'>Profile</NavLink>
+                    <NavLink className='py-[8px] px-[16px] flex justify-start'>
+                      Profile
+                    </NavLink>
+                    {user.role === 'admin' ? (
+                      <NavLink
+                        to={'/dashboard/admin-dashboard'}
+                        className='py-[8px] px-[16px]'
+                        onClick={() => handleDashboardView()}
+                      >
+                        Dashboard
+                      </NavLink>
+                    ) : null}
                     <NavLink
                       to={'/authorization'}
                       className='py-[8px] px-[16px]'

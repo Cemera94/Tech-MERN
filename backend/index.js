@@ -1,19 +1,25 @@
 const express = require('express');
 const cors = require('cors');
 const app = express();
+const path = require('path');
 
 // controllers
 const errorController = require('./controllers/errorController');
 
 // Routes
 const userRoutes = require('./routes/userRoutes');
+const adminRoutes = require('./routes/adminRoutes');
 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(cors());
 
+// UČITAJ STATIČKE FAJLOVE
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+
 // User Routes
 app.use('/api/user', userRoutes);
+app.use('/api/admin', adminRoutes);
 
 // Global error handler
 app.use(errorController);

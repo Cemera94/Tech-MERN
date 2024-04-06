@@ -12,6 +12,12 @@ import ShopPage from './pages/ShopPage.jsx';
 import ContactPage from './pages/ContactPage.jsx';
 import AuthorizationPage from './pages/AuthorizationPage.jsx';
 import store from './store/store.js';
+import DashboardPage from './pages/DashboardPage.jsx';
+import AdminProtect from './adminComponents/AdminProtect.jsx';
+import UsersPage from './adminComponents/adminPages/UsersPage.jsx';
+import AddProductPage from './adminComponents/adminPages/AddProductPage.jsx';
+import AdminDashboardPage from './adminComponents/adminPages/AdminDashboardPage.jsx';
+import CommentsPage from './adminComponents/adminPages/CommentsPage.jsx';
 
 const router = createBrowserRouter([
   {
@@ -29,6 +35,32 @@ const router = createBrowserRouter([
       {
         path: '/authorization',
         element: <AuthorizationPage />,
+      },
+      {
+        path: '/dashboard',
+        element: (
+          <AdminProtect>
+            <DashboardPage />
+          </AdminProtect>
+        ),
+        children: [
+          {
+            path: 'admin-dashboard',
+            element: <AdminDashboardPage />,
+          },
+          {
+            path: 'users',
+            element: <UsersPage />,
+          },
+          {
+            path: 'add-product',
+            element: <AddProductPage />,
+          },
+          {
+            path: 'comments',
+            element: <CommentsPage />,
+          },
+        ],
       },
     ],
   },
