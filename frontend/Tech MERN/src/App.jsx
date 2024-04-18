@@ -9,6 +9,7 @@ import { localStorageConfig } from './config/localStorageConfig';
 import { useDispatch, useSelector } from 'react-redux';
 import { setUser } from './store/userSlice';
 import { setDashboardView } from './store/dashboardSlice';
+import { setAddToCart, setCart, setCartTotalPrice } from './store/cartSlice';
 
 function App() {
   const dispatch = useDispatch();
@@ -32,6 +33,23 @@ function App() {
     }
   }, [location]);
 
+  /* SETUJEMO KORPU UKOLIKO POSTOJI U LOCALSTORAGE */
+  useEffect(() => {
+    const cart = localStorage.getItem(localStorageConfig.CART);
+    if (cart) {
+      dispatch(setCart(JSON.parse(cart)));
+    }
+  }, []);
+
+  useEffect(() => {
+    const cartTotalPrice = localStorage.getItem(
+      localStorageConfig.CART_TOTAL_PRICE
+    );
+    if (cartTotalPrice) {
+      dispatch(setCartTotalPrice(cartTotalPrice));
+    }
+  }, []);
+
   return (
     <div className=''>
       {/* Loader */}
@@ -47,7 +65,7 @@ function App() {
       <Outlet />
       {/* Toast */}
       <ToastContainer
-        position='top-center'
+        position='top-left'
         autoClose={3000}
         hideProgressBar={false}
         newestOnTop={false}

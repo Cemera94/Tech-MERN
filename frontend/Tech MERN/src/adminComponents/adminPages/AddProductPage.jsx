@@ -1,20 +1,22 @@
 import Input from '../../components/Input';
 import Label from '../../components/Label';
 import Button from '../../components/Button';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { addProduct } from '../../services/adminService';
 import { useDispatch, useSelector } from 'react-redux';
 import { setShowLoader } from '../../store/loaderSlice';
+import { toast } from 'react-toastify';
 
 function AddProductPage() {
   const [file, setFile] = useState(null);
   const [product, setProduct] = useState({
     title: '',
     description: '',
-    price: '',
+    price: 0,
   });
 
   const dispatch = useDispatch();
+  const formRef = useRef(null);
 
   const handleInputChange = (e) => {
     const newProduct = { ...product };
@@ -38,7 +40,18 @@ function AddProductPage() {
     const res = await addProduct(newProduct);
     dispatch(setShowLoader(false));
 
-    console.log(res, 'res sa fronta');
+    if (res.status === 'success') {
+      formRef.current.reset();
+      setProduct({
+        title: '',
+        description: '',
+        price: '',
+      });
+      setFile(null);
+      toast.success(res.message);
+    } else {
+      toast.error(res.message);
+    }
   };
 
   return (
@@ -46,6 +59,7 @@ function AddProductPage() {
       <form
         onSubmit={handleSubmit}
         className='login-form flex flex-col w-[50%] gap-[20px]'
+        ref={formRef}
       >
         <div className='flex flex-col gap-[10px] mb-[50px]'>
           <h1 className='text-[30px]'>Add Product</h1>
@@ -75,7 +89,7 @@ function AddProductPage() {
           <Input
             type='number'
             id='price'
-            placeholder='Product Price'
+            placeholder='Type Product Price in EUROs'
             onChange={handleInputChange}
             className='relative outline-none border border-slate-300 rounded-[10px] px-[16px] py-[8px]'
           />

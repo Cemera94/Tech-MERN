@@ -9,7 +9,6 @@ const catchAsync = require('../utils/catchAsync');
 exports.register = catchAsync(async (req, res, next) => {
   const user = await Users.findOne({ email: req.body.email });
   if (!user) {
-    console.log(req.body, 'body');
     const newUser = new Users(req.body);
     console.log(newUser);
     const saveNewUser = await newUser.save();

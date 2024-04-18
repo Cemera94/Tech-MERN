@@ -1,4 +1,4 @@
-import { NavLink, useNavigate } from 'react-router-dom';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { setCurrency, setSymbol } from '../store/currencySlice';
 import { useEffect, useState } from 'react';
@@ -7,6 +7,7 @@ import { localStorageConfig } from '../config/localStorageConfig';
 import { removeUser, setUser } from '../store/userSlice';
 import { FaChevronDown } from 'react-icons/fa6';
 import { setDashboardView } from '../store/dashboardSlice';
+import CartShopComponent from './CartShopComponent';
 
 function NavigationComponent() {
   const { currency, symbol } = useSelector((state) => state.currencyStore);
@@ -61,16 +62,19 @@ function NavigationComponent() {
             <option value='USD'>USD</option>
             <option value='RSD'>RSD</option>
           </select>
-          <span>{symbol}</span>
         </div>
         <div className='navigation flex items-center'>
           <nav>
-            <ul className='flex gap-[15px]'>
+            <ul className='flex gap-[50px] items-center'>
               <li>
                 <NavLink to={'/'}>Shop</NavLink>
               </li>
               <li>
                 <NavLink to={'/contact'}>Contact</NavLink>
+              </li>
+              <li>
+                {/* ShopCart */}
+                <CartShopComponent />
               </li>
               {localStorage.getItem(localStorageConfig.USER) ? (
                 <div className='dropdown'>
@@ -81,25 +85,25 @@ function NavigationComponent() {
                     </div>
                   </li>
                   <div className='dropdown-content py-[8px] rounded-[10px]'>
-                    <NavLink className='py-[8px] px-[16px] flex justify-start'>
+                    <Link className='py-[8px] px-[16px] flex justify-start'>
                       Profile
-                    </NavLink>
+                    </Link>
                     {user.role === 'admin' ? (
-                      <NavLink
+                      <Link
                         to={'/dashboard/admin-dashboard'}
                         className='py-[8px] px-[16px]'
                         onClick={() => handleDashboardView()}
                       >
                         Dashboard
-                      </NavLink>
+                      </Link>
                     ) : null}
-                    <NavLink
+                    <Link
                       to={'/authorization'}
                       className='py-[8px] px-[16px]'
                       onClick={handleLogout}
                     >
                       Logout
-                    </NavLink>
+                    </Link>
                   </div>
                 </div>
               ) : (

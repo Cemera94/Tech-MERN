@@ -18,6 +18,8 @@ import UsersPage from './adminComponents/adminPages/UsersPage.jsx';
 import AddProductPage from './adminComponents/adminPages/AddProductPage.jsx';
 import AdminDashboardPage from './adminComponents/adminPages/AdminDashboardPage.jsx';
 import CommentsPage from './adminComponents/adminPages/CommentsPage.jsx';
+import SingleProductPage from './pages/SingleProductPage.jsx';
+import CartShopPage from './pages/CartShopPage.jsx';
 
 const router = createBrowserRouter([
   {
@@ -35,6 +37,14 @@ const router = createBrowserRouter([
       {
         path: '/authorization',
         element: <AuthorizationPage />,
+      },
+      {
+        path: '/product/:id',
+        element: <SingleProductPage />,
+      },
+      {
+        path: 'cart-shop',
+        element: <CartShopPage />,
       },
       {
         path: '/dashboard',
