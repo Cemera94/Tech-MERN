@@ -10,6 +10,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setUser } from './store/userSlice';
 import { setDashboardView } from './store/dashboardSlice';
 import { setAddToCart, setCart, setCartTotalPrice } from './store/cartSlice';
+import { setCurrentStep, setRestartCurrentStep } from './store/orderSlice';
 
 function App() {
   const dispatch = useDispatch();
@@ -30,6 +31,12 @@ function App() {
       dispatch(setDashboardView(true));
     } else {
       dispatch(setDashboardView(false));
+    }
+  }, [location]);
+
+  useEffect(() => {
+    if (location.pathname.startsWith('/cart-shop')) {
+      dispatch(setRestartCurrentStep(1));
     }
   }, [location]);
 

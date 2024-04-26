@@ -3,12 +3,8 @@ import { NavLink } from 'react-router-dom';
 import { FaAnglesLeft } from 'react-icons/fa6';
 
 function SidebarComponent() {
-  const changeView = () => {
-    // Naviguj nas - menjaj view
-  };
-
   return (
-    <div className='flex flex-col gap-[70px] bg-[#114b5f] text-[#fff] p-[10px] h-[100vh] relative'>
+    <div className='flex flex-col gap-[70px] text-[#fff] p-[10px] h-[100vh] fixed px-[50px]'>
       <h1 className='text-[30px] font-bold ml-2 mt-5'>Admin Dashboard</h1>
       <div className='flex flex-col'>
         {/* Sidebar links */}
@@ -18,7 +14,6 @@ function SidebarComponent() {
               key={item.url}
               to={item.url}
               className='p-4 text-[20px] w-full flex items-center gap-[15px]'
-              onClick={() => changeView()}
             >
               <i className={item.icon}></i>
               {item.name}

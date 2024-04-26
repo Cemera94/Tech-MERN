@@ -2,6 +2,7 @@ const Users = require('../models/userModel');
 const AppError = require('../utils/AppError');
 const Email = require('../utils/Email');
 const catchAsync = require('../utils/catchAsync');
+const signToken = require('../utils/signToken');
 
 // ******************
 // *****REGISTER*****
@@ -54,10 +55,14 @@ exports.login = catchAsync(async (req, res, next) => {
   // Izbacujemo password pomoću Javascript metode da ne bi slali klijentu njegovu lozinku
   const { password, _id, __v, ...userData } = user.toObject();
 
+  // JWT Token security check
+  const token = signToken(user._id);
+
   if (correctPassword) {
     res.status(200).json({
       status: 'success',
       user: userData,
+      token,
     });
   } else {
     return next(new AppError('Incorrect credentials', 401));

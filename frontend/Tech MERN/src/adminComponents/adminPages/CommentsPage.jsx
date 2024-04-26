@@ -1,5 +1,5 @@
 function CommentsPage() {
-  return <div>CommentsPage</div>;
+  return <div className='h-[100vh]'>CommentsPage</div>;
 }
 
 export default CommentsPage;

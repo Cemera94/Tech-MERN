@@ -9,7 +9,21 @@ module.exports = (func) => {
         const message = messages.join('. ');
         return next(new AppError(message, 400));
       }
-      return next(new AppError('Something went wrong', 500));
+      switch (error?.type) {
+        case 'StripeCardError':
+          return next(
+            new AppError(`A payment error occurred: ${error.message}`, 404)
+          );
+        case 'StripeInvalidRequestError':
+          return next(new AppError('An invalid request occurred.', 404));
+        default:
+          return next(
+            new AppError(
+              'Another problem occurred, maybe unrelated to Stripe.',
+              404
+            )
+          );
+      }
     });
   };
 };

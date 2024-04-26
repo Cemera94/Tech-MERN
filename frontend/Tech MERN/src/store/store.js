@@ -5,6 +5,7 @@ import loaderSlice from './loaderSlice';
 import userSlice from './userSlice';
 import dashboardSlice from './dashboardSlice';
 import cartSlice from './cartSlice';
+import orderSlice from './orderSlice';
 
 const store = configureStore({
   reducer: {
@@ -14,6 +15,7 @@ const store = configureStore({
     userStore: userSlice,
     dashboardStore: dashboardSlice,
     cartStore: cartSlice,
+    orderStore: orderSlice,
   },
 });
 

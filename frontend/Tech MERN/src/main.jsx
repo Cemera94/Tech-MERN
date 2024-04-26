@@ -14,7 +14,7 @@ import AuthorizationPage from './pages/AuthorizationPage.jsx';
 import store from './store/store.js';
 import DashboardPage from './pages/DashboardPage.jsx';
 import AdminProtect from './adminComponents/AdminProtect.jsx';
-import UsersPage from './adminComponents/adminPages/UsersPage.jsx';
+import ProductsPage from './adminComponents/adminPages/ProductsPage.jsx';
 import AddProductPage from './adminComponents/adminPages/AddProductPage.jsx';
 import AdminDashboardPage from './adminComponents/adminPages/AdminDashboardPage.jsx';
 import CommentsPage from './adminComponents/adminPages/CommentsPage.jsx';
@@ -59,8 +59,8 @@ const router = createBrowserRouter([
             element: <AdminDashboardPage />,
           },
           {
-            path: 'users',
-            element: <UsersPage />,
+            path: 'products',
+            element: <ProductsPage />,
           },
           {
             path: 'add-product',

@@ -12,7 +12,7 @@ function DashboardPage() {
   };
 
   return (
-    <div className='container mx-auto flex p-0'>
+    <div className='add-product flex p-0 '>
       {/* Left side */}
       <div className='w-[25%]'>
         <SidebarComponent />

@@ -100,7 +100,6 @@ input[type='password']::-webkit-reveal-button {
   background-color: #114b5f;
   color: #fff;
   border-radius: 5px;
-  padding: 4px 16px;
 }
 
 .return:hover .svg {
@@ -109,4 +108,18 @@ input[type='password']::-webkit-reveal-button {
 
 .svg {
   transition: transform 0.3s ease-out;
+}
+
+.add-product {
+  background-image: url('./assets/mjy12.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.order-products {
+  border-right: 1px solid hsl(210, 13%, 50%, 0.5);
+}
+
+.product-label {
+  border-bottom: 1px solid hsl(210, 13%, 50%, 0.8);
 }

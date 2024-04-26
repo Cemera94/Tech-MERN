@@ -57,8 +57,11 @@ function LoginPage() {
     const res = await login(data);
     dispatch(setShowLoader(false));
 
+    console.log(res, 'res sa fronta LOGIN');
+
     if (res.status === 'success') {
       localStorage.setItem(localStorageConfig.USER, JSON.stringify(res.user));
+      localStorage.setItem(localStorageConfig.TOKEN, res.token);
       dispatch(setUser(res.user));
       navigate('/');
     } else {

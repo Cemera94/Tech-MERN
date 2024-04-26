@@ -5,9 +5,9 @@ export const listModels = [
     icon: 'fa-solid fa-chart-line',
   },
   {
-    name: 'Users',
-    url: 'users',
-    icon: 'fa-regular fa-user',
+    name: 'Products',
+    url: 'products',
+    icon: 'fa-solid fa-list',
   },
   {
     name: 'Add Product',

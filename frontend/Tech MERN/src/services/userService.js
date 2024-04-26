@@ -34,6 +34,7 @@ export const login = async (user) => {
         // status i message koji šaljemo na front(Login.jsx) i tamo pristupamo preko konstante res=login(data) koja će imati ova dva propertija
         status: res.data.status,
         user: res.data.user,
+        token: res.data.token,
       };
     }
     return {

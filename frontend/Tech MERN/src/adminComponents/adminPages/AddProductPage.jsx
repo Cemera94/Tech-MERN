@@ -55,7 +55,7 @@ function AddProductPage() {
   };
 
   return (
-    <div className='container mx-auto w-[100%] flex flex-col items-center justify-center mt-[100px]'>
+    <div className='container mx-auto w-[100%] h-[100vh] flex flex-col items-center justify-center text-[#fff]'>
       <form
         onSubmit={handleSubmit}
         className='login-form flex flex-col w-[50%] gap-[20px]'
@@ -71,7 +71,7 @@ function AddProductPage() {
             id='title'
             placeholder='Type Product Title'
             onChange={handleInputChange}
-            className='relative outline-none border border-slate-300 rounded-[10px] px-[16px] py-[8px]'
+            className='relative outline-none border border-slate-300 rounded-[10px] px-[16px] py-[8px] text-[#000]'
           />
         </div>
         <div className='flex flex-col gap-[10px]'>
@@ -81,7 +81,7 @@ function AddProductPage() {
             id='description'
             placeholder='Product Description'
             onChange={handleInputChange}
-            className='relative outline-none border border-slate-300 rounded-[10px] px-[16px] py-[8px]'
+            className='relative outline-none border border-slate-300 rounded-[10px] px-[16px] py-[8px] text-[#000]'
           />
         </div>
         <div className='flex flex-col gap-[10px]'>
@@ -91,7 +91,7 @@ function AddProductPage() {
             id='price'
             placeholder='Type Product Price in EUROs'
             onChange={handleInputChange}
-            className='relative outline-none border border-slate-300 rounded-[10px] px-[16px] py-[8px]'
+            className='relative outline-none border border-slate-300 rounded-[10px] px-[16px] py-[8px] text-[#000]'
           />
         </div>
         <div className='flex flex-col gap-[10px]'>
@@ -101,7 +101,7 @@ function AddProductPage() {
             id='image'
             placeholder='Product Image'
             onChange={handleFile}
-            className='relative outline-none border border-slate-300 rounded-[10px] px-[16px] py-[8px]'
+            className='relative outline-none border border-slate-300 rounded-[10px] px-[16px] py-[8px] text-[#000]'
           />
         </div>
         <Button className='bg-[#114b5f] py-[8px] rounded-[10px] outline-none text-white'>

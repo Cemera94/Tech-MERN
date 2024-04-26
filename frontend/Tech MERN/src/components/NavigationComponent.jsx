@@ -67,10 +67,10 @@ function NavigationComponent() {
           <nav>
             <ul className='flex gap-[50px] items-center'>
               <li>
-                <NavLink to={'/'}>Shop</NavLink>
+                <Link to={'/'}>Shop</Link>
               </li>
               <li>
-                <NavLink to={'/contact'}>Contact</NavLink>
+                <Link to={'/contact'}>Contact</Link>
               </li>
               <li>
                 {/* ShopCart */}
@@ -108,9 +108,9 @@ function NavigationComponent() {
                 </div>
               ) : (
                 <li>
-                  <NavLink to={'/authorization'} onClick={() => handleToggle()}>
+                  <Link to={'/authorization'} onClick={() => handleToggle()}>
                     {toggle ? 'Login' : 'Register'}
-                  </NavLink>
+                  </Link>
                 </li>
               )}
             </ul>

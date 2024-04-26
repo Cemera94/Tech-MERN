@@ -6,6 +6,7 @@ const cartSlice = createSlice({
   initialState: {
     cartItems: [],
     cartTotalPrice: 0,
+    cartCouponTotalPrice: 0,
     isNewItem: false,
     isOldItem: false,
     isRemovedItem: false,
@@ -113,6 +114,9 @@ const cartSlice = createSlice({
     setCartTotalPrice: (state, action) => {
       state.cartTotalPrice = action.payload;
     },
+    setCartCouponPrice: (state, action) => {
+      state.cartCouponTotalPrice = action.payload;
+    },
   },
 });
 
@@ -128,5 +132,6 @@ export const {
   setHandleCount,
   setCart,
   setCartTotalPrice,
+  setCartCouponPrice,
 } = cartSlice.actions;
 export default cartSlice.reducer;

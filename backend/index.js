@@ -10,6 +10,7 @@ const errorController = require('./controllers/errorController');
 const userRoutes = require('./routes/userRoutes');
 const adminRoutes = require('./routes/adminRoutes');
 const productRoutes = require('./routes/productRoutes');
+const paymentRoutes = require('./routes/paymentRoutes');
 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
@@ -22,6 +23,7 @@ app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 app.use('/api/user', userRoutes);
 app.use('/api/admin', adminRoutes);
 app.use('/api/product', productRoutes);
+app.use('/api/payment', paymentRoutes);
 
 // Global error handler
 app.use(errorController);
