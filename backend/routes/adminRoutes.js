@@ -14,6 +14,11 @@ router
     upload.single('file'),
     adminController.addProduct
   )
-  .delete(authorizationValidation.protect, adminController.deleteSingleProduct);
+  .delete(authorizationValidation.protect, adminController.deleteSingleProduct)
+  .put(
+    authorizationValidation.protect,
+    upload.single('file'),
+    adminController.updateProduct
+  );
 
 module.exports = router;

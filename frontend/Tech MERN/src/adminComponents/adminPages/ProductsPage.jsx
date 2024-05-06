@@ -4,11 +4,14 @@ import { setShowLoader } from '../../store/loaderSlice';
 import { getAllProducts } from '../../services/productService';
 import ConvertPriceHook from '../../utils/convertPrice';
 import DeleteModal from './modals/DeleteModal';
+import EditModal from './modals/EditModal';
+import { NavLink } from 'react-router-dom';
 
 function ProductsPage() {
   const dispatch = useDispatch();
   const [products, setProducts] = useState([]);
   const [isDeleteModal, setIsDeleteModal] = useState(false);
+  const [isEditModal, setisEditModal] = useState(false);
   const [currentProduct, setCurrentProduct] = useState({});
   const convertPrice = ConvertPriceHook();
 
@@ -27,6 +30,11 @@ function ProductsPage() {
 
   const deleteProduct = (product) => {
     setIsDeleteModal(true);
+    setCurrentProduct(product);
+  };
+
+  const editProduct = (product) => {
+    setisEditModal(true);
     setCurrentProduct(product);
   };
 
@@ -50,11 +58,13 @@ function ProductsPage() {
                 <h3>{index + 1}</h3>
               </div>
               <div className='w-[20%]'>
-                <img
-                  src={`http://localhost:4000/uploads/${product.image}`}
-                  alt={product.title}
-                  className='w-[100px] h-[100px] object-contain'
-                />
+                <NavLink to={`/product/${product._id}`}>
+                  <img
+                    src={`http://localhost:4000/uploads/${product.image}`}
+                    alt={product.title}
+                    className='w-[100px] h-[100px] object-contain'
+                  />
+                </NavLink>
               </div>
               <div className='w-[25%]'>
                 <h1>{product.title}</h1>
@@ -63,7 +73,10 @@ function ProductsPage() {
                 <p>{convertPrice(product.price)}</p>
               </div>
               <div className=' flex w-[25%] justify-center gap-[50px]'>
-                <button className='bg-[#114b5f] text-[#fff] px-[24px] py-[8px] rounded-[10px]'>
+                <button
+                  className='bg-[#114b5f] text-[#fff] px-[24px] py-[8px] rounded-[10px]'
+                  onClick={() => editProduct(product)}
+                >
                   Edit
                 </button>
                 <button
@@ -82,6 +95,14 @@ function ProductsPage() {
           currentProduct={currentProduct}
           setIsDeleteModal={setIsDeleteModal}
           isDeleteModal={isDeleteModal}
+          fetchData={fetchData}
+        />
+      )}
+      {isEditModal && (
+        <EditModal
+          currentProduct={currentProduct}
+          setisEditModal={setisEditModal}
+          isEditModal={isEditModal}
           fetchData={fetchData}
         />
       )}

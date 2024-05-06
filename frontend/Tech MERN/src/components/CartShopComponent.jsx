@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { IoCartOutline } from 'react-icons/io5';
+import { CiShoppingCart } from 'react-icons/ci';
 import { FaRegTrashCan } from 'react-icons/fa6';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
@@ -32,7 +32,6 @@ function CartShopComponent() {
     if (cartItems.length) {
       localStorage.setItem(localStorageConfig.CART, JSON.stringify(cartItems));
     }
-    console.log(cartItems.length);
   }, [cartItems]);
 
   useEffect(() => {
@@ -54,7 +53,7 @@ function CartShopComponent() {
       onMouseLeave={() => setIsHovered(false)}
     >
       <Link to={'/cart-shop'} className='flex gap-[5px] relative'>
-        <IoCartOutline size={25} />
+        <CiShoppingCart size={25} />
 
         {cartItems.length ? (
           <span className='flex justify-center items-center w-[20px] h-[20px] rounded-[50%] bg-[#114b5f] text-[#fff] absolute left-[20px] top-[-10px]'>

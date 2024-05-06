@@ -29,7 +29,8 @@ const cartSlice = createSlice({
           count: 1,
           totalPrice: action.payload.price,
         });
-        state.cartTotalPrice += action.payload.price;
+        state.cartTotalPrice =
+          parseInt(state.cartTotalPrice) + action.payload.price;
         state.isNewItem = true;
         state.isOldItem = false;
         state.isRemovedItem = false;
@@ -109,7 +110,6 @@ const cartSlice = createSlice({
     },
     setCart: (state, action) => {
       state.cartItems = action.payload;
-      console.log(action.payload);
     },
     setCartTotalPrice: (state, action) => {
       state.cartTotalPrice = action.payload;

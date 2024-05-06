@@ -1,32 +1,62 @@
 import { useEffect, useState } from 'react';
 import { getAllProducts } from '../services/productService';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { setShowLoader } from '../store/loaderSlice';
 import { NavLink } from 'react-router-dom';
 
 // icons
-import { IoCartOutline } from 'react-icons/io5';
+import { CiShoppingCart } from 'react-icons/ci';
+import { FaHeart } from 'react-icons/fa6';
 import { CiHeart } from 'react-icons/ci';
 import ConvertPriceHook from '../utils/convertPrice';
+import { setAddToCart } from '../store/cartSlice';
+import {
+  setAddToFavorites,
+  setRemoveFromFavorites,
+} from '../store/favoritesSlice';
+import { localStorageConfig } from '../config/localStorageConfig';
 
 function ShopPage() {
-  const dispatch = useDispatch();
   const [products, setProducts] = useState([]);
+  const { favoriteItems } = useSelector((state) => state.favoriteStore);
+
+  const dispatch = useDispatch();
   const convertPrice = ConvertPriceHook();
 
-  useEffect(() => {
-    async function fetchData() {
-      dispatch(setShowLoader(true));
-      const res = await getAllProducts();
+  async function fetchData() {
+    dispatch(setShowLoader(true));
+    const res = await getAllProducts();
 
-      dispatch(setShowLoader(false));
-      if (res.status === 'success') {
-        setProducts(res.products);
-      }
+    dispatch(setShowLoader(false));
+    if (res.status === 'success') {
+      setProducts(res.products);
     }
+  }
+  useEffect(() => {
+    if (favoriteItems.length) {
+      localStorage.setItem(
+        localStorageConfig.FAVORITES,
+        JSON.stringify(favoriteItems)
+      );
+    }
+  }, [favoriteItems]);
 
+  useEffect(() => {
     fetchData();
   }, []);
+
+  const handleHeartClick = (el) => {
+    const isFavorited = favoriteItems.some((item) => item._id === el._id);
+    if (isFavorited) {
+      // Item is already favorited, handle unfavoriting logic here
+      // For example, you can remove the item from the favoriteItems array
+      dispatch(setRemoveFromFavorites(el));
+      localStorage.removeItem(localStorageConfig.FAVORITES);
+    } else {
+      // Item is not favorited, handle favoriting logic here
+      dispatch(setAddToFavorites(el));
+    }
+  };
 
   return (
     <>
@@ -49,9 +79,13 @@ function ShopPage() {
                       className='w-[70%] h-[100%] object-contain mt-[20px]'
                     />
                   </NavLink>
-                  <div className='absolute top-[-5px] right-[-5px]'>
-                    <button>
-                      <CiHeart size={30} color='#114b5f' />
+                  <div className='absolute top-[0px] right-[0px]'>
+                    <button onClick={() => handleHeartClick(el)}>
+                      {favoriteItems.some((item) => item._id === el._id) ? (
+                        <FaHeart size={25} color='#ff9885' />
+                      ) : (
+                        <CiHeart size={25} color='#ff9885' />
+                      )}
                     </button>
                   </div>
                 </div>
@@ -62,8 +96,11 @@ function ShopPage() {
                 <div className='flex justify-between items-center'>
                   <h3 className='text-[20px]'>{convertPrice(el.price)}</h3>
 
-                  <button className='w-[50px] h-[50px] rounded-[50%] bg-[#114b5f] flex justify-center items-center'>
-                    <IoCartOutline size={30} color='#fff' />
+                  <button
+                    className='w-[50px] h-[50px] rounded-[50%]  flex justify-center items-center'
+                    onClick={() => dispatch(setAddToCart(el))}
+                  >
+                    <CiShoppingCart size={35} color='#114b5f' />
                   </button>
                 </div>
               </div>

@@ -4,4 +4,5 @@ export const localStorageConfig = {
   CART: 'cart',
   CART_TOTAL_PRICE: 'total_price',
   TOKEN: 'token',
+  FAVORITES: 'favorites',
 };

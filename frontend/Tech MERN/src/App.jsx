@@ -11,6 +11,7 @@ import { setUser } from './store/userSlice';
 import { setDashboardView } from './store/dashboardSlice';
 import { setAddToCart, setCart, setCartTotalPrice } from './store/cartSlice';
 import { setCurrentStep, setRestartCurrentStep } from './store/orderSlice';
+import { setFavorites } from './store/favoritesSlice';
 
 function App() {
   const dispatch = useDispatch();
@@ -45,6 +46,12 @@ function App() {
     const cart = localStorage.getItem(localStorageConfig.CART);
     if (cart) {
       dispatch(setCart(JSON.parse(cart)));
+    }
+  }, []);
+  useEffect(() => {
+    const favorites = localStorage.getItem(localStorageConfig.FAVORITES);
+    if (favorites) {
+      dispatch(setFavorites(JSON.parse(favorites)));
     }
   }, []);
 

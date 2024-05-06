@@ -51,3 +51,26 @@ export const deleteSingleProduct = async ({ productID, productImage }) => {
     };
   }
 };
+
+export const updatedProduct = async (product) => {
+  try {
+    const res = await axios.put('/api/admin/product', product);
+    if (res.status === 200 && res.data.status === 'success') {
+      return {
+        status: res.data.status,
+        message: res.data.message,
+      };
+    }
+
+    return {
+      status: res.data.err.status,
+      message: 'Something went wrong',
+    };
+  } catch (error) {
+    console.log(error, 'greska iz servisa GET SINGLE PRODUCT');
+    return {
+      status: error.response.data.err.status,
+      message: error.response.data.message,
+    };
+  }
+};

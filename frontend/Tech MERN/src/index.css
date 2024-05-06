@@ -123,3 +123,7 @@ input[type='password']::-webkit-reveal-button {
 .product-label {
   border-bottom: 1px solid hsl(210, 13%, 50%, 0.8);
 }
+
+.comment {
+  border-bottom: 1px solid hsl(210, 13%, 50%, 0.8);
+}

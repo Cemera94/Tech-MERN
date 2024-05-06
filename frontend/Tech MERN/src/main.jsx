@@ -20,6 +20,7 @@ import AdminDashboardPage from './adminComponents/adminPages/AdminDashboardPage.
 import CommentsPage from './adminComponents/adminPages/CommentsPage.jsx';
 import SingleProductPage from './pages/SingleProductPage.jsx';
 import CartShopPage from './pages/CartShopPage.jsx';
+import FavoritesPage from './pages/FavoritesPage.jsx';
 
 const router = createBrowserRouter([
   {
@@ -45,6 +46,10 @@ const router = createBrowserRouter([
       {
         path: 'cart-shop',
         element: <CartShopPage />,
+      },
+      {
+        path: 'favorites',
+        element: <FavoritesPage />,
       },
       {
         path: '/dashboard',

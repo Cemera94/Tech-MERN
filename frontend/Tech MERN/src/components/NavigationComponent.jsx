@@ -8,6 +8,7 @@ import { removeUser, setUser } from '../store/userSlice';
 import { FaChevronDown } from 'react-icons/fa6';
 import { setDashboardView } from '../store/dashboardSlice';
 import CartShopComponent from './CartShopComponent';
+import FavoritesComponent from './FavoritesComponent';
 
 function NavigationComponent() {
   const { currency, symbol } = useSelector((state) => state.currencyStore);
@@ -72,9 +73,10 @@ function NavigationComponent() {
               <li>
                 <Link to={'/contact'}>Contact</Link>
               </li>
-              <li>
+              <li className='flex gap-[10px]'>
                 {/* ShopCart */}
                 <CartShopComponent />
+                <FavoritesComponent />
               </li>
               {localStorage.getItem(localStorageConfig.USER) ? (
                 <div className='dropdown'>

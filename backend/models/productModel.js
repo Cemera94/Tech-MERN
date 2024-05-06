@@ -25,6 +25,10 @@ const productSchema = new Schema({
   allRatings: {
     type: Array,
   },
+  isLiked: {
+    type: Boolean,
+    default: false,
+  },
 });
 
 const productModel = mongoose.model('product', productSchema);
