@@ -12,6 +12,7 @@ const adminRoutes = require('./routes/adminRoutes');
 const productRoutes = require('./routes/productRoutes');
 const paymentRoutes = require('./routes/paymentRoutes');
 const commentRoutes = require('./routes/commentRoutes');
+const categoryRoutes = require('./routes/categoryRoutes');
 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
@@ -26,6 +27,7 @@ app.use('/api/admin', adminRoutes);
 app.use('/api/product', productRoutes);
 app.use('/api/payment', paymentRoutes);
 app.use('/api/comment', commentRoutes);
+app.use('/api/category', categoryRoutes);
 
 // Global error handler
 app.use(errorController);

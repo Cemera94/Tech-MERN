@@ -1,9 +1,13 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Modal from 'react-modal';
 import { useDispatch } from 'react-redux';
 import { setShowLoader } from '../../../store/loaderSlice';
 import { toast } from 'react-toastify';
-import { updatedProduct } from '../../../services/adminService';
+import {
+  getAllCategories,
+  updatedProduct,
+} from '../../../services/adminService';
+import { useLocation } from 'react-router-dom';
 
 const customStyles = {
   content: {
@@ -29,9 +33,10 @@ function EditModal({ currentProduct, setisEditModal, isEditModal, fetchData }) {
     price: currentProduct.price,
     _id: currentProduct._id,
     image: currentProduct.image,
+    category: currentProduct.category,
   });
   const [file, setFile] = useState(null);
-  const [isEdited, setIsEdited] = useState(false);
+  const [categories, setCategories] = useState([]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -55,12 +60,15 @@ function EditModal({ currentProduct, setisEditModal, isEditModal, fetchData }) {
       toast.error('Product description cannot be empty');
     } else if (product.price === '') {
       toast.error('Product price cannot be empty');
+    } else if (product.category === '') {
+      toast.error('Product category cannot be empty');
     }
 
     if (
       product.title === '' ||
       product.description === '' ||
-      product.price === ''
+      product.price === '' ||
+      product.category === ''
     )
       return;
 
@@ -85,6 +93,24 @@ function EditModal({ currentProduct, setisEditModal, isEditModal, fetchData }) {
   const handleFile = (e) => {
     setFile(e.target.files[0]);
   };
+
+  const handleOptionChange = (e) => {
+    setProduct((prevProduct) => ({
+      ...prevProduct,
+      category: e.target.value,
+    }));
+  };
+
+  useEffect(() => {
+    const fetchData = async () => {
+      dispatch(setShowLoader(true));
+      const res = await getAllCategories();
+      dispatch(setShowLoader(false));
+      setCategories(res.categories);
+    };
+
+    fetchData();
+  }, []);
 
   return (
     <div className='flex justify-center items-center text-center'>
@@ -125,6 +151,24 @@ function EditModal({ currentProduct, setisEditModal, isEditModal, fetchData }) {
               onChange={handleinputChange}
               className='relative outline-none border border-slate-300 rounded-[10px] px-[16px] py-[8px] text-[#000]'
             />
+          </div>
+          <div className='flex flex-col gap-[10px] '>
+            <label htmlFor='price'>Add Category</label>
+            <select
+              name='category'
+              id='category'
+              className='px-[16px] py-[8px] rounded-[10px] text-[#000]'
+              onChange={(e) => handleOptionChange(e)}
+            >
+              <option></option>
+              {categories.map((item, index) => {
+                return (
+                  <option key={index} value={item.title}>
+                    {item.title}
+                  </option>
+                );
+              })}
+            </select>
           </div>
           <div className='flex flex-col gap-[10px]'>
             <label htmlFor='image'>Image</label>

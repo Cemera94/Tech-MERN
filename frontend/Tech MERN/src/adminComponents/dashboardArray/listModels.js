@@ -19,4 +19,19 @@ export const listModels = [
     url: 'comments',
     icon: 'fa-regular fa-comment',
   },
+  {
+    name: 'Users',
+    url: 'users',
+    icon: 'fa-solid fa-users',
+  },
+  {
+    name: 'Add Category',
+    url: 'add-category',
+    icon: 'fa-solid fa-plus',
+  },
+  {
+    name: 'Categories',
+    url: 'categories',
+    icon: 'fa-solid fa-layer-group',
+  },
 ];

@@ -1,9 +1,13 @@
 import { useState } from 'react';
 import Modal from 'react-modal';
-import { deleteSingleProduct } from '../../../services/adminService';
+import {
+  deleteSingleCategory,
+  deleteSingleProduct,
+} from '../../../services/adminService';
 import { useDispatch } from 'react-redux';
 import { setShowLoader } from '../../../store/loaderSlice';
 import { toast } from 'react-toastify';
+import { useLocation } from 'react-router-dom';
 
 const customStyles = {
   content: {
@@ -26,31 +30,56 @@ function DeleteModal({
   setIsDeleteModal,
   isDeleteModal,
   fetchData,
+  fetchCategories,
+  currentCategory,
 }) {
   const dispatch = useDispatch();
+  const location = useLocation();
 
   const handleDeleteCurrentProduct = async () => {
-    dispatch(setShowLoader(true));
-    const res = await deleteSingleProduct({
-      productID: currentProduct._id,
-      productImage: currentProduct.image,
-    });
-    dispatch(setShowLoader(false));
+    if (location.pathname === '/dashboard/products') {
+      dispatch(setShowLoader(true));
+      const res = await deleteSingleProduct({
+        productID: currentProduct._id,
+        productImage: currentProduct.image,
+      });
+      dispatch(setShowLoader(false));
 
-    console.log(res, 'res sa fronta DELETE');
-    if (res.status === 'success') {
-      setIsDeleteModal(false);
-      toast.success(res.message);
-      fetchData();
-    } else toast.error(res.message);
+      if (res.status === 'success') {
+        setIsDeleteModal(false);
+        toast.success(res.message);
+        fetchData();
+      } else toast.error(res.message);
+    }
+
+    if (location.pathname === '/dashboard/categories') {
+      dispatch(setShowLoader(true));
+      const res = await deleteSingleCategory({
+        categoryID: currentCategory._id,
+        categoryImage: currentCategory.image,
+        categoryTitle: currentCategory.title,
+      });
+      dispatch(setShowLoader(false));
+
+      if (res.status === 'success') {
+        setIsDeleteModal(false);
+        toast.success(res.message);
+        fetchCategories();
+      } else toast.error(res.message);
+    }
   };
 
   return (
     <div className='flex justify-center items-center text-center'>
+      {console.log(currentCategory)}
       <Modal isOpen={isDeleteModal} ariaHideApp={false} style={customStyles}>
         <h1 className='text-center text-[20px]'>
           Are you sure you want to delete{' '}
-          <span className='font-bold'>{currentProduct.title}</span>?
+          {location.pathname === '/dashboard/products' ? (
+            <span className='font-bold'>{currentProduct.title}</span>
+          ) : (
+            <span className='font-bold'>{currentCategory.title}</span>
+          )}
         </h1>
         <div className='flex justify-between mt-[30px]'>
           <button

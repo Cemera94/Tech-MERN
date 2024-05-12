@@ -5,6 +5,7 @@ module.exports = (func) => {
     func(req, res, next).catch((error) => {
       console.error(error, 'CatchAsync error');
       if (error.name === 'ValidationError') {
+        console.log('USAO SAM OVDE');
         const messages = Object.values(error.errors).map((el) => el.message);
         const message = messages.join('. ');
         return next(new AppError(message, 400));

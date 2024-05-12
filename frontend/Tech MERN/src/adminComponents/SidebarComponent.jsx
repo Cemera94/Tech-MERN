@@ -4,7 +4,7 @@ import { FaAnglesLeft } from 'react-icons/fa6';
 
 function SidebarComponent() {
   return (
-    <div className='flex flex-col gap-[70px] text-[#fff] p-[10px] h-[100vh] fixed px-[50px]'>
+    <div className='flex flex-col gap-[70px] text-[#fff] p-[10px] h-[100vh] fixed px-[50px] border-r border-[#114b5f]'>
       <h1 className='text-[30px] font-bold ml-2 mt-5'>Admin Dashboard</h1>
       <div className='flex flex-col'>
         {/* Sidebar links */}

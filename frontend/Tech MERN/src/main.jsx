@@ -16,11 +16,15 @@ import DashboardPage from './pages/DashboardPage.jsx';
 import AdminProtect from './adminComponents/AdminProtect.jsx';
 import ProductsPage from './adminComponents/adminPages/ProductsPage.jsx';
 import AddProductPage from './adminComponents/adminPages/AddProductPage.jsx';
+import UsersPage from './adminComponents/adminPages/UsersPage.jsx';
+import AddCategoryPage from './adminComponents/adminPages/AddCategoryPage.jsx';
+import CategoriesPage from './adminComponents/adminPages/CategoriesPage.jsx';
 import AdminDashboardPage from './adminComponents/adminPages/AdminDashboardPage.jsx';
 import CommentsPage from './adminComponents/adminPages/CommentsPage.jsx';
 import SingleProductPage from './pages/SingleProductPage.jsx';
 import CartShopPage from './pages/CartShopPage.jsx';
 import FavoritesPage from './pages/FavoritesPage.jsx';
+import ProductsByCategory from './pages/ProductsByCategory.jsx';
 
 const router = createBrowserRouter([
   {
@@ -42,6 +46,10 @@ const router = createBrowserRouter([
       {
         path: '/product/:id',
         element: <SingleProductPage />,
+      },
+      {
+        path: '/category/:title',
+        element: <ProductsByCategory />,
       },
       {
         path: 'cart-shop',
@@ -74,6 +82,18 @@ const router = createBrowserRouter([
           {
             path: 'comments',
             element: <CommentsPage />,
+          },
+          {
+            path: 'users',
+            element: <UsersPage />,
+          },
+          {
+            path: 'add-category',
+            element: <AddCategoryPage />,
+          },
+          {
+            path: 'categories',
+            element: <CategoriesPage />,
           },
         ],
       },

@@ -21,4 +21,21 @@ router
     adminController.updateProduct
   );
 
+router
+  .route('/category/:categoryID?/:categoryImage?/:categoryTitle?')
+  .post(
+    authorizationValidation.protect,
+    upload.single('file'),
+    adminController.addCategory
+  )
+  .get(adminController.getAllCategories)
+  .delete(authorizationValidation.protect, adminController.deleteSingleCategory)
+  .put(
+    authorizationValidation.protect,
+    upload.single('file'),
+    adminController.updateCategory
+  );
+
+router.route('/users').get(adminController.getAllUsers);
+
 module.exports = router;

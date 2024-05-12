@@ -1,8 +1,8 @@
 import Input from '../../components/Input';
 import Label from '../../components/Label';
 import Button from '../../components/Button';
-import { useRef, useState } from 'react';
-import { addProduct } from '../../services/adminService';
+import { useEffect, useRef, useState } from 'react';
+import { addProduct, getAllCategories } from '../../services/adminService';
 import { useDispatch, useSelector } from 'react-redux';
 import { setShowLoader } from '../../store/loaderSlice';
 import { toast } from 'react-toastify';
@@ -13,7 +13,9 @@ function AddProductPage() {
     title: '',
     description: '',
     price: 0,
+    category: '',
   });
+  const [categories, setCategories] = useState([]);
 
   const dispatch = useDispatch();
   const formRef = useRef(null);
@@ -54,6 +56,24 @@ function AddProductPage() {
     }
   };
 
+  const handleOptionChange = (e) => {
+    setProduct((prevProduct) => ({
+      ...prevProduct,
+      category: e.target.value,
+    }));
+  };
+
+  useEffect(() => {
+    const fetchData = async () => {
+      dispatch(setShowLoader(true));
+      const res = await getAllCategories();
+      dispatch(setShowLoader(false));
+      setCategories(res.categories);
+    };
+
+    fetchData();
+  }, []);
+
   return (
     <div className='container mx-auto w-[100%] h-[100vh] flex flex-col items-center justify-center text-[#fff]'>
       <form
@@ -93,6 +113,24 @@ function AddProductPage() {
             onChange={handleInputChange}
             className='relative outline-none border border-slate-300 rounded-[10px] px-[16px] py-[8px] text-[#000]'
           />
+        </div>
+        <div className='flex flex-col gap-[10px] '>
+          <Label htmlFor='price'>Add Category</Label>
+          <select
+            name='category'
+            id='category'
+            className='px-[16px] py-[8px] rounded-[10px] text-[#000]'
+            onChange={(e) => handleOptionChange(e)}
+          >
+            <option></option>
+            {categories.map((item, index) => {
+              return (
+                <option key={index} value={item.title}>
+                  {item.title}
+                </option>
+              );
+            })}
+          </select>
         </div>
         <div className='flex flex-col gap-[10px]'>
           <Label htmlFor='image'>Image</Label>

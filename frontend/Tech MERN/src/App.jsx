@@ -12,6 +12,7 @@ import { setDashboardView } from './store/dashboardSlice';
 import { setAddToCart, setCart, setCartTotalPrice } from './store/cartSlice';
 import { setCurrentStep, setRestartCurrentStep } from './store/orderSlice';
 import { setFavorites } from './store/favoritesSlice';
+import CategoriesComponent from './components/CategoriesComponent';
 
 function App() {
   const dispatch = useDispatch();
@@ -70,7 +71,7 @@ function App() {
       <LoaderComponent />
       {/* Navigation */}
       {!isDashboardView && (
-        <div className=' border-b-2 border-slate-200 mb-[100px]'>
+        <div className=' border-b-2 border-slate-200'>
           <NavigationComponent />
         </div>
       )}
