@@ -132,6 +132,12 @@ function EditCategoryModal({
             Update Category
           </Button>
         </form>
+        <button
+          className='bg-red-500 py-[8px] rounded-[10px] outline-none text-white w-full mt-[10px]'
+          onClick={() => setIsEdit(false)}
+        >
+          Cancel
+        </button>
       </Modal>
     </div>
   );

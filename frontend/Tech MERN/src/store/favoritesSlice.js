@@ -28,7 +28,6 @@ const favoritesSlice = createSlice({
       }
 
       state.favoriteItems = copyFavoriteItems;
-      console.log(state.favoriteItems);
     },
     setRemoveFromFavorites: (state, action) => {
       let copyFavoriteItems = [...state.favoriteItems];

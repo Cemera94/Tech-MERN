@@ -57,7 +57,7 @@ function LoginPage() {
     const res = await login(data);
     dispatch(setShowLoader(false));
 
-    console.log(res, 'res sa fronta LOGIN');
+    // console.log(res, 'res sa fronta LOGIN');
 
     if (res.status === 'success') {
       localStorage.setItem(localStorageConfig.USER, JSON.stringify(res.user));
@@ -71,7 +71,7 @@ function LoginPage() {
 
   return (
     <>
-      <div className='login-form-wrapper container mx-auto'>
+      <div className='login-form-wrapper container mx-auto mt-[100px]'>
         <div className='w-[100%] flex flex-col items-center justify-center'>
           <form
             className='login-form flex flex-col w-[50%] gap-[20px]'

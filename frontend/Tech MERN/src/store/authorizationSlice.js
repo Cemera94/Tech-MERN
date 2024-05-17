@@ -7,7 +7,6 @@ const authorizationSlice = createSlice({
   },
   reducers: {
     setToggle: (state, action) => {
-      console.log(action.payload);
       state.toggle = action.payload;
     },
     showLoginForm: (state) => {

@@ -6,6 +6,7 @@ import {
 import OrderFooter from './OrderFooter';
 import { useDispatch } from 'react-redux';
 import { setShowLoader } from '../../store/loaderSlice';
+import { toast } from 'react-toastify';
 
 const CheckoutForm = () => {
   const dispatch = useDispatch();
@@ -31,6 +32,7 @@ const CheckoutForm = () => {
 
     if (result.error) {
       // Show error to your customer (for example, payment details incomplete)
+      toast.error(result.error);
       console.log(result.error.message);
     } else {
       // Your customer will be redirected to your `return_url`. For some payment

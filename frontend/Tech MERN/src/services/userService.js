@@ -3,7 +3,7 @@ import axios from 'axios';
 export const register = async (user) => {
   try {
     const res = await axios.post('/api/user/register', user);
-    console.log(res, 'res iz servisa');
+    // console.log(res, 'res iz servisa');
     if (res.status === 200 && res.data.status === 'success') {
       return {
         status: res.data.status,
@@ -15,7 +15,7 @@ export const register = async (user) => {
       message: res.data.message,
     };
   } catch (error) {
-    console.log(error, 'greška iz servisa');
+    console.log(error, 'greška iz servisa REGISTER');
     return {
       status: error.response.data.err.status,
       message: error.response.data.message,
@@ -26,7 +26,7 @@ export const register = async (user) => {
 export const login = async (user) => {
   try {
     const res = await axios.post('/api/user/login', user);
-    console.log(res, 'res iz servisa LOGIN');
+    // console.log(res, 'res iz servisa LOGIN');
 
     // res koji se prikazuje u konzoli, pristupamo res.status i res.data.status
     if (res.status === 200 && res.data.status === 'success') {
@@ -48,6 +48,29 @@ export const login = async (user) => {
     }; */
   } catch (error) {
     console.log(error, 'greška iz servisa LOGIN');
+    return {
+      status: error.response.data.err.status,
+      message: error.response.data.message,
+    };
+  }
+};
+
+export const updateUser = async (user) => {
+  try {
+    const res = await axios.put('/api/user/update', user);
+    if (res.status === 200 && res.data.status === 'success') {
+      return {
+        status: res.data.status,
+        message: res.data.message,
+        user: res.data.user,
+      };
+    }
+    return {
+      status: res.data.err.status,
+      message: res.data.message,
+    };
+  } catch (error) {
+    console.log(error, 'greška iz servisa UPDATE USER');
     return {
       status: error.response.data.err.status,
       message: error.response.data.message,

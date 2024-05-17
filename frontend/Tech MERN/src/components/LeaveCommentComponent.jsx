@@ -32,7 +32,7 @@ function LeaveCommentComponent({ product }) {
     const res = await addNewComment(comment);
     dispatch(setShowLoader(false));
 
-    console.log(res, 'res sa fronta LEAVE COMMENT');
+    // console.log(res, 'res sa fronta LEAVE COMMENT');
     if (res.status === 'success') {
       toast.success(res.message);
       setComment((prev) => ({

@@ -68,7 +68,7 @@ export const getAllComments = async () => {
 export const changeStatus = async (commentID, status) => {
   try {
     const res = await axios.patch('/api/comment', { commentID, status });
-    console.log(res, 'res iz servisa CHANGE STATUS');
+    // console.log(res, 'res iz servisa CHANGE STATUS');
     if (res.status === 200 && res.data.status === 'success') {
       return {
         status: res.data.status,
@@ -90,7 +90,7 @@ export const changeStatus = async (commentID, status) => {
 export const deleteComment = async (commentID) => {
   try {
     const res = await axios.delete(`/api/comment/${commentID}`);
-    console.log(res, 'res iz servisa DELETE COMMENT');
+    // console.log(res, 'res iz servisa DELETE COMMENT');
     if (res.status === 200 && res.data.status === 'success') {
       return {
         status: res.data.status,

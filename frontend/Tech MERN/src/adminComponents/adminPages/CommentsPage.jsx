@@ -15,7 +15,7 @@ function CommentsPage() {
     dispatch(setShowLoader(true));
     const res = await changeStatus(el._id, newStatus);
     dispatch(setShowLoader(false));
-    console.log(res, 'res sa fronta CHANGE STATUS');
+    // console.log(res, 'res sa fronta CHANGE STATUS');
     if (res.status === 'success') {
       toast.success(res.message);
       /* setComments((prevComments) =>
@@ -31,7 +31,7 @@ function CommentsPage() {
     dispatch(setShowLoader(true));
     const res = await getAllComments();
     dispatch(setShowLoader(false));
-    console.log(res, 'res sa fronta GET ALL COMMENTS');
+    // console.log(res, 'res sa fronta GET ALL COMMENTS');
     if (res.status === 'success') {
       setComments(res.allComments);
     }

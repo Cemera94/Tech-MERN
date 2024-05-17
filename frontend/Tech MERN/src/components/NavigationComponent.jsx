@@ -87,7 +87,10 @@ function NavigationComponent() {
                     </div>
                   </li>
                   <div className='dropdown-content py-[8px] rounded-[10px]'>
-                    <Link className='py-[8px] px-[16px] flex justify-start'>
+                    <Link
+                      to={'/profile'}
+                      className='py-[8px] px-[16px] flex justify-start'
+                    >
                       Profile
                     </Link>
                     {user.role === 'admin' ? (

@@ -50,7 +50,7 @@ function SingleProductPage() {
 
   return (
     <>
-      <div className='container mx-auto flex flex-col justify-center items-center gap-[30px] mb-[50px]'>
+      <div className='container mx-auto flex flex-col justify-center items-center gap-[30px] mb-[50px] mt-[100px]'>
         {/* LEFT SIDE */}
         <div className='flex justify-center items-center w-[50%] border border-slate-400 rounded-[20px]'>
           <img

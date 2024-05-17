@@ -9,8 +9,6 @@ const currencySlice = createSlice({
   reducers: {
     setCurrency: (state, action) => {
       state.currency = action.payload;
-
-      console.log(state.symbol);
     },
     setSymbol: (state, action) => {
       if (state.currency === 'EUR') {

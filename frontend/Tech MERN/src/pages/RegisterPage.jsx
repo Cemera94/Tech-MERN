@@ -71,11 +71,11 @@ function RegisterPage() {
     } else {
       toast.error(res.message);
     }
-    console.log(res, 'res sa fronta');
+    // console.log(res, 'res sa fronta');
   };
 
   return (
-    <div className='container mx-auto'>
+    <div className='container mx-auto mt-[100px]'>
       <div className='w-[100%] flex flex-col items-center justify-center'>
         <form
           action=''

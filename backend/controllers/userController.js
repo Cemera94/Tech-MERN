@@ -68,3 +68,25 @@ exports.login = catchAsync(async (req, res, next) => {
     return next(new AppError('Incorrect credentials', 401));
   }
 });
+
+exports.update = catchAsync(async (req, res, next) => {
+  const user = await Users.findOneAndUpdate(
+    { email: req.body.email },
+    {
+      username: req.body.username,
+      role: req.body.role,
+      firstName: req.body.firstName,
+      lastName: req.body.lastName,
+      address: req.body.address,
+      city: req.body.city,
+      postCode: req.body.postCode,
+    }
+  );
+  if (user) {
+    return res.status(200).json({
+      status: 'success',
+      message: 'User updated successfully',
+      user,
+    });
+  }
+});

@@ -32,7 +32,7 @@ export const deleteSingleProduct = async ({ productID, productImage }) => {
     const res = await axios.delete(
       `/api/admin/product/${productID}/${productImage}`
     );
-    console.log(res, 'res iz servisa');
+    // console.log(res, 'res iz servisa');
     if (res.status === 200 && res.data.status === 'success') {
       return {
         status: res.data.status,
@@ -53,7 +53,6 @@ export const deleteSingleProduct = async ({ productID, productImage }) => {
 };
 
 export const updatedProduct = async (product) => {
-  console.log(product);
   try {
     const res = await axios.put('/api/admin/product', product);
     if (res.status === 200 && res.data.status === 'success') {
@@ -132,7 +131,7 @@ export const deleteSingleCategory = async ({
     const res = await axios.delete(
       `/api/admin/category/${categoryID}/${categoryImage}/${categoryTitle}`
     );
-    console.log(res, 'res iz servisa DELETE SINGLE CATEGORY');
+    // console.log(res, 'res iz servisa DELETE SINGLE CATEGORY');
     if (res.status === 200 && res.data.status === 'success') {
       return {
         status: res.data.status,

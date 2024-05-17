@@ -24,6 +24,7 @@ import CommentsPage from './adminComponents/adminPages/CommentsPage.jsx';
 import SingleProductPage from './pages/SingleProductPage.jsx';
 import CartShopPage from './pages/CartShopPage.jsx';
 import FavoritesPage from './pages/FavoritesPage.jsx';
+import ProfilePage from './pages/ProfilePage.jsx';
 import ProductsByCategory from './pages/ProductsByCategory.jsx';
 
 const router = createBrowserRouter([
@@ -42,6 +43,10 @@ const router = createBrowserRouter([
       {
         path: '/authorization',
         element: <AuthorizationPage />,
+      },
+      {
+        path: '/profile',
+        element: <ProfilePage />,
       },
       {
         path: '/product/:id',

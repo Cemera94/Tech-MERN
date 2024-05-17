@@ -71,7 +71,6 @@ function DeleteModal({
 
   return (
     <div className='flex justify-center items-center text-center'>
-      {console.log(currentCategory)}
       <Modal isOpen={isDeleteModal} ariaHideApp={false} style={customStyles}>
         <h1 className='text-center text-[20px]'>
           Are you sure you want to delete{' '}
