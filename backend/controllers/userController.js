@@ -15,7 +15,7 @@ exports.register = catchAsync(async (req, res, next) => {
     const saveNewUser = await newUser.save();
 
     // SENDING EMAIL
-    const url = 'http://127.0.0.1:5173/';
+    const url = 'https://tech-mern-q4mo.onrender.com';
     await new Email(
       { email: saveNewUser.email, username: saveNewUser.username },
       url

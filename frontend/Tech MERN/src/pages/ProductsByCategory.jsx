@@ -91,7 +91,7 @@ function ProductsByCategory() {
       <div className='relative mb-[100px]'>
         <div className='w-[100%]'>
           <img
-            src={`http://localhost:4000/uploads/${category.image}`}
+            src={`https://backendtech-mern-q4mo.onrender.com/uploads/${category.image}`}
             alt={category.title}
             className='w-full max-h-[500px] object-cover mt-[20px]'
           />
@@ -116,7 +116,7 @@ function ProductsByCategory() {
                     className='flex justify-center items-center'
                   >
                     <img
-                      src={`http://localhost:4000/uploads/${el.image}`}
+                      src={`https://backendtech-mern-q4mo.onrender.com/uploads/${el.image}`}
                       alt={el.title}
                       className='w-[70%] h-[100%] object-contain mt-[20px]'
                     />

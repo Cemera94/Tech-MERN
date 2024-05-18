@@ -54,7 +54,7 @@ function SingleProductPage() {
         {/* LEFT SIDE */}
         <div className='flex justify-center items-center w-[50%] border border-slate-400 rounded-[20px]'>
           <img
-            src={`http://localhost:4000/uploads/${product.image}`}
+            src={`https://backendtech-mern-q4mo.onrender.com/uploads/${product.image}`}
             alt={product.title}
             className='w-[400px] h-[400px] object-contain'
           />

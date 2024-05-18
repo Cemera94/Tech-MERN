@@ -25,7 +25,7 @@ const CheckoutForm = () => {
       //`Elements` instance that was used to create the Payment Element
       elements,
       confirmParams: {
-        return_url: 'http://127.0.0.1:5173/cart-shop',
+        return_url: 'https://tech-mern-q4mo.onrender.com/cart-shop',
       },
     });
     dispatch(setShowLoader(false));

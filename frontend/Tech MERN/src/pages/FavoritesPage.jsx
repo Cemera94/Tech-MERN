@@ -16,7 +16,7 @@ function FavoritesPage() {
           <div className='w-[50%]'>
             <Link to={`/product/${el._id}`}>
               <img
-                src={`http://localhost:4000/uploads/${el.image}`}
+                src={`https://backendtech-mern-q4mo.onrender.com/uploads/${el.image}`}
                 alt={el.title}
                 className='w-[200px] h-[200px] object-contain cursor-pointer'
               />

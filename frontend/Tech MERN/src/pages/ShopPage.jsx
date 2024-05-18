@@ -76,7 +76,7 @@ function ShopPage() {
                     className='flex justify-center items-center'
                   >
                     <img
-                      src={`http://localhost:4000/uploads/${el.image}`}
+                      src={`https://backendtech-mern-q4mo.onrender.com/uploads/${el.image}`}
                       alt={el.title}
                       className='w-[70%] h-[100%] object-contain mt-[20px]'
                     />

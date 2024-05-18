@@ -60,7 +60,7 @@ function ProductsPage() {
               <div className='w-[20%]'>
                 <NavLink to={`/product/${product._id}`}>
                   <img
-                    src={`http://localhost:4000/uploads/${product.image}`}
+                    src={`https://backendtech-mern-q4mo.onrender.com/uploads/${product.image}`}
                     alt={product.title}
                     className='w-[100px] h-[100px] object-contain'
                   />

@@ -42,7 +42,7 @@ function OrderPageOne() {
               <div key={index} className='w-full flex items-center'>
                 <div className='flex gap-[50px] w-[50%] items-center text-left'>
                   <img
-                    src={`http://localhost:4000/uploads/${item.image}`}
+                    src={`https://backendtech-mern-q4mo.onrender.com/uploads/${item.image}`}
                     alt={item.title}
                     className='w-[100px] h-[100px] object-contain'
                   />
