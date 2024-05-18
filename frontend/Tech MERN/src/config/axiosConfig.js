@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { getToken } from '../utils/getToken';
 
-axios.defaults.baseURL = 'https://backendtech-mern-q4mo.onrender.com';
+axios.defaults.baseURL = 'https://backendtech-mern.onrender.com';
 
 // Add a request interceptor
 axios.interceptors.request.use(

@@ -54,7 +54,7 @@ function CategoriesPage() {
                 <td className='text-left'>{index + 1}</td>
                 <td className='font-bold'>
                   <img
-                    src={`https://backendtech-mern-q4mo.onrender.com/uploads/${el.image}`}
+                    src={`https://backendtech-mern.onrender.com/uploads/${el.image}`}
                     alt={el.title}
                     className='w-[100px] h-[80px] object-fit'
                   />

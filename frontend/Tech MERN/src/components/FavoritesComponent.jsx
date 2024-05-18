@@ -53,7 +53,7 @@ function FavoritesComponent() {
                   className='flex justify-around items-center z-10 '
                 >
                   <img
-                    src={`https://backendtech-mern-q4mo.onrender.com/uploads/${el.image}`}
+                    src={`https://backendtech-mern.onrender.com/uploads/${el.image}`}
                     alt={el.title}
                     className='w-[60px] h-[60px] object-contain'
                   />
