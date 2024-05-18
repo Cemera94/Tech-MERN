@@ -4,14 +4,20 @@ const pug = require('pug');
 module.exports = class Email {
   constructor(user, url) {
     this.to = user.email;
-    this.from = 'TechMERN Company <jcemerikic@gmail.com>';
+    this.from = 'TechMERN Company <cemera94@gmail.com>';
     this.username = user.username;
     this.url = url;
   }
 
   newTransport() {
     if (process.env.NODE_ENV === 'production') {
-      return;
+      return nodemailer.createTransport({
+        service: 'SendGrid',
+        auth: {
+          user: process.env.SENDGRID_USERNAME,
+          pass: process.env.SENDGRID_PASSWORD,
+        },
+      });
     } else {
       return nodemailer.createTransport({
         host: process.env.MAILTRAP_EMAIL_HOST,

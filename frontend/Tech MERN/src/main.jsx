@@ -26,6 +26,11 @@ import CartShopPage from './pages/CartShopPage.jsx';
 import FavoritesPage from './pages/FavoritesPage.jsx';
 import ProfilePage from './pages/ProfilePage.jsx';
 import ProductsByCategory from './pages/ProductsByCategory.jsx';
+import { disableReactDevTools } from '@fvilers/disable-react-devtools';
+
+if (import.meta.env.MODE === 'production') {
+  disableReactDevTools();
+}
 
 const router = createBrowserRouter([
   {

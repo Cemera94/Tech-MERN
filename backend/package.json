@@ -4,7 +4,8 @@
   "description": "Tech Shop app",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon server.js"
+    "start": "nodemon server.js",
+    "start:prod": "node server.js"
   },
   "author": "Jovan Cemerikic",
   "license": "ISC",
